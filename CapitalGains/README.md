@@ -19,7 +19,7 @@ Console Application built with .Net Core 7.0 (New Style using top-statements)
 From a bash or powershell console.
 
 ``` 
-$ cd nubank/CapitalGains
+$ cd capitalgains
 $ dotnet build
 $ dotnet run < inputTest.txt
  ```
@@ -37,7 +37,7 @@ $ dotnet run < inputTest.txt
 From a bash or powershell console.
 
 ```
-$ cd nubanktest/CapitalGains.Test
+$ cd capitalgains
 $ dotnet test
 ```
 

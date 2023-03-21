@@ -1,4 +1,4 @@
-## Technical and Arquitectural Decisions
+## Technical and Architectural Decisions
 The technical architecture of the project is a substract of the principles of Clean Architecture, specifically the Onion Architecture pattern with N-Layers, which helps to achieve a separation of concerns and a more maintainable and testable codebase.
 
 To handle the different types of stock operations, the project uses the Strategy Pattern, which allows for easy switching between different algorithms or strategies based on the operation type. This approach promotes a more modular design, making it easier to add or remove strategies as needed.

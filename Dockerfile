@@ -12,12 +12,12 @@ WORKDIR /CapitalGains.Test
 CMD ["dotnet", "test", "--logger:trx"]
 
 # run the unit tests
-FROM build AS test
+FROM build-env AS test
 WORKDIR /CapitalGains.Test
 RUN dotnet test --logger:trx
 
 # Build and publish a release
-FROM build AS publish
+FROM build-env AS publish
 WORKDIR /CapitalGains
 RUN dotnet publish -c Release -o out
 

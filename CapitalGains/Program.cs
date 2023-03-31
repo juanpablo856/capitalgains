@@ -8,20 +8,24 @@ namespace CapitalGains;
 
 internal class Program
 {
-    public static void Main(string[] args)
+    internal static void Main(string[] args)
     {
         var provider = new ServiceCollection()
-                .AddTransient<BuyStrategyService>()
-                .AddTransient<SellStrategyService>()
+                .AddSingleton<BuyStrategyService>()
+                .AddSingleton<SellStrategyService>()
+                .AddScoped<IStockOperationsService, StockOperationsService>(
+                    provider => new StockOperationsService(
+                        buyStrategy: provider.GetRequiredService<BuyStrategyService>(),
+                        sellStrategy: provider.GetRequiredService<SellStrategyService>()
+                        )
+                    )
                 .BuildServiceProvider();
                 
-        var buyStrategy = provider.GetRequiredService<BuyStrategyService>();
-        var sellStrategy = provider.GetRequiredService<SellStrategyService>();
+        var stockOperationsService = provider.GetRequiredService<IStockOperationsService>();
         string jsonLine;
 
         while (!String.IsNullOrWhiteSpace(jsonLine=Console.ReadLine()))
         {
-            IStockOperationsService stockOperationsService = new StockOperationsService(buyStrategy, sellStrategy);
             IEnumerable<StockOperation> stockOperations = stockOperationsService.ReadLine(jsonLine);
             IList<CapitalGainsTax> capitalGainsTaxes = new List<CapitalGainsTax>();
             
